@@ -40,38 +40,42 @@ class CaseRunner{
             //找到哪些方法是需要测试的方法
             Method[] methods = bCase.getClass().getMethods();
             for(Method method : methods){
-                //取到每一个方法的注解
+                //取到每一个方法的注解，找出需要测试的方法
                 Benchmark benchmark = method.getAnnotation(Benchmark.class);
                 if(benchmark == null){
                     continue;
                 }
 
+                //获取需要测试方法的配置
                 Measurement methodMeasurement = method.getAnnotation(Measurement.class);
                 if(methodMeasurement != null){
                     iterations = methodMeasurement.iterations();
                     group = methodMeasurement.group();
                 }
 
-
+                //调用对象的实例测试方法测试
                 runCase(bCase,method,iterations,group);
 
             }
         }
 
     }
+
+
+    ////实例测试方法测试
     private void runCase(Case bCase,Method method,int iterations,int group) throws InvocationTargetException, IllegalAccessException {
         System.out.println(method.getName());
         for (int i = 0; i < group; i++) {
             System.out.printf("第%d次实验:",i);
             long t1 = System.nanoTime();
             for (int j = 0; j < iterations; j++) {
+                //通过 Method.invoke()调用被注解的方法，即bCase
                 method.invoke(bCase);
             }
             long t2 = System.nanoTime();
             System.out.printf("耗时：%d 纳秒%n",t2-t1);
         }
     }
-
 }
 
 
@@ -90,12 +94,13 @@ public class CaseLoader {
          * 3.扫描路径的所有类文件
          * */
         ClassLoader classLoader = this.getClass().getClassLoader();
+        //获取"pkg"文件夹下的文件
         Enumeration<URL> urls = classLoader.getResources(pkg);
         while(urls.hasMoreElements()){
             //路径
             URL url = urls.nextElement();
             if(!url.getProtocol().equals("file")){
-                //如果不是*。class文件，暂时不支持
+                //如果不是*.class文件，暂时不支持
                 continue;
             }
             String dirname = URLDecoder.decode(url.getPath(),"UTF-8");
@@ -115,6 +120,8 @@ public class CaseLoader {
                 classNameList.add(className);
             }
         }
+
+
         List<Case> caseList = new ArrayList<Case>();
         for(String className : classNameList){
             Class<?> cls = Class.forName(pkgDot+"."+className);
@@ -127,6 +134,7 @@ public class CaseLoader {
 
 
     private boolean hasInterface(Class<?> cls,Class<?> intf){
+        //利用Case接口，找出需要的*.class文件
         Class<?>[] intfs = cls.getInterfaces();
         for (Class<?> i : intfs){
             if(i == intf){

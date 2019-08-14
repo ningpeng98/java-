@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * 1.测试快速排序与归并排序的差别
- * 2.自己实现归并排序与Arrays.sort对比
+ * 测试自己实现的归并排序，快速排序与Arrays.sort的耗时对比
  *
  * */
 
@@ -62,7 +61,9 @@ public class SortCase implements Case {
 
 
     public void mergeSort(int[] a){
+
         mergeSortInternal(a,0,a.length);
+
     }
     private void mergeSortInternal(int[] a,int low,int high){
         if(high <= low+1){
