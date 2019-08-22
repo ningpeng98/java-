@@ -20,7 +20,7 @@ public class NewThread1 extends Thread{
 ```
  **如何启动线程？**
  - 启动线程时不能直接调用run()方法
-  先观察一下直接调用run()方法会出现什么情况：
+    先观察一下直接调用run()方法会出现什么情况：
 ```
 public class ThreadMain {
     public static void main(String[] args) {
@@ -50,8 +50,9 @@ public class ThreadMain {
     }
 }
 ```
-通过观察结果，可以看出，调用start()方法才能启动线程：
+ 通过观察结果，可以看出，调用start()方法才能启动线程：
 ![调用start()方法](https://img-blog.csdnimg.cn/20190822093118748.png)
+
 #####	start()方法与run()方法的区别与关系：
 
  - 调用start方法方可启动线程，而run方法只是thread的一个普通方法调用，还是在主线程里执行。所以，调用start方法实现多线程，而调用run方法没有实现多线程
@@ -75,7 +76,7 @@ public class ThreadMain {
 	...
 	}
 ```
-可以看到`template(run_method_name,"run") `这一句调用了run方法。
+ 可以看到`template(run_method_name,"run") `这一句调用了run方法。
  #	方式2、实现Runnable()接口
  ```
  public class NewThread2 implements Runnable{
