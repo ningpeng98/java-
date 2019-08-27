@@ -1,5 +1,9 @@
 package com.dao;
-//不带头单链表
+/**
+ * 不带头单链表
+ */
+
+
 import com.impl.ILinked;
 
 public class MySingleListImpl implements ILinked {

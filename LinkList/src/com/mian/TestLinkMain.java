@@ -1,5 +1,7 @@
 package com.mian;
-
+/**
+ * 不带头单链表
+ */
 import com.dao.MySingleListImpl;
 
 public class TestLinkMain {
@@ -15,7 +17,8 @@ public class TestLinkMain {
         mySingleList.display();
         System.out.println(mySingleList.contains(12));
         System.out.println(mySingleList.contains(50));
-        mySingleList.remove(12);
+        mySingleList.remove(
+                12);
         mySingleList.display();
         mySingleList.remove(30);
         mySingleList.display();

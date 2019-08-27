@@ -1,5 +1,7 @@
 package com.impl;
-
+/**
+ * 不带头单链表
+ */
 public interface ILinked {
     //头插法
     void addFirst(int data);
