@@ -1,6 +1,7 @@
 package com.test.cases;
 
 
+
 import com.test.Case;
 import com.test.annotations.Benchmark;
 import com.test.annotations.Measurement;
@@ -10,7 +11,7 @@ import com.test.annotations.Measurement;
  *  String的"+"操作与StringBuilder的append()方法对比
  * */
 @Measurement(iterations = 10,group = 3)
-public class AddCast  {
+public class AddCast  implements Case {
     private static String StringAdd(){
         String s = "";
         for (int i = 0; i < 10; i++) {
