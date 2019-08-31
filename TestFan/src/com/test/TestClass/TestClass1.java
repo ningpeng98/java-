@@ -6,35 +6,7 @@ import java.util.Arrays;
 
 public class TestClass1 {
     public static void main(String[] args) {
-        Class class2 = Message.class;
-        //获取Massage的所有构造方法(构造方法名+（构造方法参数）)
-        Constructor[] constructors = class2.getConstructors();
-        for (Constructor con: constructors) {
-            System.out.println(con.getName()+"("+Arrays.toString(con.getParameterTypes()) +")");
-        }
-        System.out.println("*********************************");
-        //获取指定的构造方法
-        try {
-            Constructor constructor = class2.getConstructor(String.class,Integer.class);
-            System.out.println(constructor.getName()+"("+Arrays.toString(constructor.getParameterTypes()) +")");
-
-
-            //通过构造方法对象获取实例化对象
-            Object obj = constructor.newInstance("Jack",22);
-            System.out.println(obj);
-            System.out.println(obj.getClass());
-            Message massage = (Message) obj;
-            System.out.println(massage.toString());
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
+        //Class对象获取方法、、
 
     }
 }
@@ -128,6 +100,39 @@ class Test1{
 }
 
 
+/**
+ * 旧实例
+ * */
+/*public static void old(){
+    Class class2 = Message.class;
+    //获取Massage的所有构造方法(构造方法名+（构造方法参数）)
+    Constructor[] constructors = class2.getConstructors();
+    for (Constructor con: constructors) {
+        System.out.println(con.getName()+"("+Arrays.toString(con.getParameterTypes()) +")");
+    }
+    System.out.println("*********************************");
+    //获取指定的构造方法
+    try {
+        Constructor constructor = class2.getConstructor(String.class,Integer.class);
+        System.out.println(constructor.getName()+"("+Arrays.toString(constructor.getParameterTypes()) +")");
 
+
+        //通过构造方法对象获取实例化对象
+        Object obj = constructor.newInstance("Jack",22);
+        System.out.println(obj);
+        System.out.println(obj.getClass());
+        Message massage = (Message) obj;
+        System.out.println(massage.toString());
+    } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+    } catch (IllegalAccessException e) {
+        e.printStackTrace();
+    } catch (InstantiationException e) {
+        e.printStackTrace();
+    } catch (InvocationTargetException e) {
+        e.printStackTrace();
+    }
+
+}*/
 
 
