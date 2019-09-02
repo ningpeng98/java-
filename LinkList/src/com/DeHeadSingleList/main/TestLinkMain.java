@@ -1,8 +1,8 @@
-package com.mian;
+package com.DeHeadSingleList.main;
 /**
  * 不带头单链表
  */
-import com.dao.MySingleListImpl;
+import com.DeHeadSingleList.dao.MySingleListImpl;
 
 public class TestLinkMain {
     public static void main(String[] args) {
@@ -32,6 +32,9 @@ public class TestLinkMain {
         mySingleList.display();
         mySingleList.removeAllKey(7);
         mySingleList.display();
+        System.out.println("clear之后：");
+        mySingleList.display();
+        System.out.println("******************");
 
     }
 }

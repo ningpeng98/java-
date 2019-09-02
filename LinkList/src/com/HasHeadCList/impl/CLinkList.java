@@ -1,14 +1,15 @@
-package com.impl;
+package com.HasHeadCList.impl;
 /**
- * 不带头单链表
- */
-public interface ILinked {
+ * 带头结点循环单链表
+ * */
+
+public interface CLinkList {
     //头插法
     void addFirst(int data);
     //尾插法
     void addLast(int data);
     //任意位置插入,第一个数据节点为0号下标
-    boolean addindex(int index,int data);
+    boolean addIndex(int index,int data);
     //查找是否包含关键字key是否在单链表当中
     boolean contains(int key);
     //删除第一次出现关键字为key的节点
@@ -20,4 +21,3 @@ public interface ILinked {
     void display();
     void clear();
 }
-

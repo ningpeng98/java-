@@ -1,10 +1,10 @@
-package com.dao;
+package com.DeHeadSingleList.dao;
 /**
  * 不带头单链表
  */
 
 
-import com.impl.ILinked;
+import com.DeHeadSingleList.impl.ILinked;
 
 public class MySingleListImpl implements ILinked {
     class Node{
@@ -188,7 +188,7 @@ public class MySingleListImpl implements ILinked {
 
     @Override
     public void clear() {
-        while(head!=null){
+        while(this.head!=null){
             Node cur = this.head.next;
             this.head.next = null;
             this.head = cur;
