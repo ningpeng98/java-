@@ -1,6 +1,7 @@
 package com.DeHeadDoubleCList.dao;
 
 import com.DeHeadDoubleCList.impl.IDoubleList;
+import org.omg.CORBA.DATA_CONVERSION;
 
 public class DeHeadDoubleClinkLise implements IDoubleList {
     class Node{
@@ -48,14 +49,49 @@ public class DeHeadDoubleClinkLise implements IDoubleList {
 
         }else{
             this.last.next = node;
-            
+            node.prev =  this.last;
+            this.last = node;
         }
 
     }
 
+
+    //检查Index的位置是否合法
+    private void checkIndex(int index){
+        if(index<0 ||index>getLength()){
+            throw new IndexOutOfBoundsException("下标不合法");
+        }
+    }
+
+    private Node searchIndex(int index){
+        checkIndex(index);
+        Node cur = this.head;
+        int count = 0;
+        while(count<index){
+            cur = cur.next;
+            count++;
+        }
+        return cur;
+    }
+
     @Override
     public boolean addindex(int index, int data) {
-        return false;
+        if(index == 0){
+            addFirst(data);
+            return true;
+        }else if(index == getLength()){
+            addLast(data);
+            return true;
+        }
+        Node node = new Node(data);
+        Node cur = searchIndex(index);
+        node.next = cur;
+        cur.prev.next = node;
+        node.prev = cur.prev;
+        cur.prev = node;
+        return true;
+
+
     }
 
     @Override
