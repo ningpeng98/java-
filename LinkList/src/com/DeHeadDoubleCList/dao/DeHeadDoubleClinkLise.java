@@ -1,7 +1,9 @@
 package com.DeHeadDoubleCList.dao;
-
+/**
+ * 不带头双向链表实现
+ * */
 import com.DeHeadDoubleCList.impl.IDoubleList;
-import org.omg.CORBA.DATA_CONVERSION;
+
 
 public class DeHeadDoubleClinkLise implements IDoubleList {
     class Node{
@@ -96,31 +98,104 @@ public class DeHeadDoubleClinkLise implements IDoubleList {
 
     @Override
     public boolean contains(int key) {
+        Node cur = this.head;
+        while(cur!=null){
+            if(cur.data == key){
+                return true;
+
+            }else{
+                cur = cur.next;
+            }
+        }
         return false;
+
     }
 
     @Override
     public int remove(int key) {
-        return 0;
+        Node cur = this.head;
+        while (cur!=null){
+            if(cur.data == key){
+                int oldDate = cur.data;
+                //删除的节点是头节点
+                if(cur == this.head){
+                    this.head= this.head.next;
+                    this.head.prev = null;
+
+                }else{
+                    cur.prev.next = cur.next;;
+                    if(cur.next!=null){
+                        cur.next.prev = cur.prev;
+                    }else{
+                        //删除最后一个节点，last需要指回来
+                        this.last = cur.prev;
+                    }
+                }
+                return oldDate;
+            }
+            cur = cur.next;
+        }
+
+        return -1;
     }
 
     @Override
     public void removeAllKey(int key) {
+        Node cur = this.head;
+        while (cur!=null){
+            if(cur.data == key){
+                //删除的节点是头节点
+                if(cur == this.head){
+                    this.head= this.head.next;
+                    this.head.prev = null;
 
+                }else{
+                    cur.prev.next = cur.next;;
+                    if(cur.next!=null){
+                        cur.next.prev = cur.prev;
+                    }else{
+                        //删除最后一个节点，last需要指回来
+                        this.last = cur.prev;
+                    }
+                }
+            }
+            cur = cur.next;
+        }
     }
 
     @Override
     public int getLength() {
-        return 0;
+        int count = 0;
+        Node cur = this.head;
+        while(cur!=null){
+            count++;
+            cur = cur.next;
+        }
+        return count;
     }
 
     @Override
     public void display() {
+        Node cur = this.head;
+        while(cur!=null){
+            System.out.print(cur.data+" ");
+            cur = cur.next;
+        }
+        System.out.println();
 
     }
 
     @Override
     public void clear() {
+        while(this.head!=null){
+            Node cur = this.head.next;
+            head.prev = null;
+            head.next = null;
+            head = cur;
+        }
+
+        this.last = null;
+
 
     }
 }

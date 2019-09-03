@@ -25,13 +25,13 @@ public class MySingleListImpl implements ILinked {
     //头插法
     @Override
     public void addFirst(int data) {
-        Node node = new Node(data);
-        if(this.head==null){
-            this.head = node;
-        }else{
-            node.next = this.head;
-            this.head = node;
-        }
+            Node node = new Node(data);
+            if(this.head==null){
+                this.head = node;
+            }else{
+                node.next = this.head;
+                this.head = node;
+            }
 
 
 

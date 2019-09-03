@@ -1,5 +1,7 @@
 package com.DeHeadDoubleCList.impl;
-
+/**
+ * 不带头双向链表实现
+ * */
 public interface IDoubleList {
     //头插法
     void addFirst(int data);
